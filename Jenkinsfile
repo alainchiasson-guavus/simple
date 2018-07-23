@@ -2,6 +2,7 @@ pipeline {
   agent {
     docker {
       image 'alainchiasson/docker-molecule'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
   stages {
