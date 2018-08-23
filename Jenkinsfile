@@ -1,7 +1,9 @@
 pipeline {
   agent {
     docker {
-      image 'docker:stable-dind'
+      alwaysPull true
+      image 'alainchiasson/docker-molecule:develop'
+      args '--privileged -v /DATA/docker-cache:/docker-cache'
     }
   }
   stages {
@@ -15,25 +17,16 @@ pipeline {
       }
     }
     stage ("create.") {
-      docker {
-        image 'alainchiasson/docker-molecule'
-      }
       steps {
         sh 'molecule --debug create'
       }
     }
     stage ("converge.") {
-      docker {
-        image 'alainchiasson/docker-molecule'
-      }
       steps {
         sh 'molecule --debug converge'
       }
     }
     stage ("destroy") {
-      docker {
-        image 'alainchiasson/docker-molecule'
-      }
       steps {
         sh 'molecule --debug destroy'
       }
