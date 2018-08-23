@@ -1,8 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'alainchiasson/docker-molecule'
-      args '-v /var/run/docker.sock:/var/run/docker.sock'
+      image 'docker:stable-dind'
     }
   }
   stages {
@@ -12,20 +11,29 @@ pipeline {
         // we need to let Ansible know where to find role
         sh 'env'
         sh 'mkdir -p molecule/default/roles'
-        sh 'ln -s `pwd` molecule/default/roles/simple'
+        sh '[[ -e molecule/default/roles/simple ]] || ln -s `pwd` molecule/default/roles/simple'
       }
     }
     stage ("create.") {
+      docker {
+        image 'alainchiasson/docker-molecule'
+      }
       steps {
         sh 'molecule --debug create'
       }
     }
     stage ("converge.") {
+      docker {
+        image 'alainchiasson/docker-molecule'
+      }
       steps {
         sh 'molecule --debug converge'
       }
     }
     stage ("destroy") {
+      docker {
+        image 'alainchiasson/docker-molecule'
+      }
       steps {
         sh 'molecule --debug destroy'
       }
