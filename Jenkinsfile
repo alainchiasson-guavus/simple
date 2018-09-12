@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       alwaysPull true
-      image 'alainchiasson/docker-molecule:develop'
+      image 'alainchiasson/docker-molecule:latest'
       args '--privileged -v /DATA/docker-cache:/docker-cache'
     }
   }
