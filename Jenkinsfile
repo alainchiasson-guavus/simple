@@ -12,23 +12,21 @@ pipeline {
         // Jenkins check out the role into a folder with arbitrary name,
         // we need to let Ansible know where to find role
         sh 'env'
-        sh 'mkdir -p molecule/default/roles'
-        sh '[[ -e molecule/default/roles/simple ]] || ln -s `pwd` molecule/default/roles/simple'
       }
     }
     stage ("create.") {
       steps {
-        sh 'molecule --debug create'
+        sh 'cd simple && molecule --debug create'
       }
     }
     stage ("converge.") {
       steps {
-        sh 'molecule --debug converge'
+        sh 'cd simple && molecule --debug converge'
       }
     }
     stage ("destroy") {
       steps {
-        sh 'molecule --debug destroy'
+        sh 'cd simple && molecule --debug destroy'
       }
     }
   }
