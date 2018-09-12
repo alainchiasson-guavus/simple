@@ -9,8 +9,6 @@ pipeline {
   stages {
     stage ("Print out image env") {
       steps {
-        // Jenkins check out the role into a folder with arbitrary name,
-        // we need to let Ansible know where to find role
         sh 'env'
       }
     }
