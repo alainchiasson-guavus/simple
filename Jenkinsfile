@@ -19,7 +19,7 @@ pipeline {
     }
     stage ("converge.") {
       steps {
-        sh 'cd simple && molecule --debug converge'
+        sh 'molecule --debug converge'
       }
     }
     stage ("destroy") {
