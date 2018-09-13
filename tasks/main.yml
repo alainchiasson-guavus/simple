@@ -1,2 +1,5 @@
 ---
 # tasks file for simple
+- name: Print a message
+  debug:
+    msg: "Simple Task is running"
