@@ -14,17 +14,17 @@ pipeline {
     }
     stage ("create.") {
       steps {
-        sh 'cd simple && molecule --debug create'
+        sh 'molecule --debug create'
       }
     }
     stage ("converge.") {
       steps {
-        sh 'cd simple && molecule --debug converge'
+        sh 'molecule --debug converge'
       }
     }
     stage ("destroy") {
       steps {
-        sh 'cd simple && molecule --debug destroy'
+        sh 'molecule --debug destroy'
       }
     }
   }
