@@ -14,18 +14,18 @@ pipeline {
     }
     stage ("create.") {
       steps {
-        sh 'molecule --debug create'
+        sh 'molecule --debug test'
       }
     }
-    stage ("converge.") {
-      steps {
-        sh 'molecule --debug converge'
-      }
-    }
-    stage ("destroy") {
-      steps {
-        sh 'molecule --debug destroy'
-      }
-    }
+    // stage ("converge.") {
+    //   steps {
+    //     sh 'molecule --debug converge'
+    //   }
+    // }
+    // stage ("destroy") {
+    //   steps {
+    //     sh 'molecule --debug destroy'
+    //   }
+    // }
   }
 }
