@@ -14,7 +14,7 @@ pipeline {
     }
     stage ("create.") {
       steps {
-        sh 'molecule --debug test'
+        sh 'cd simple && molecule --debug test'
       }
     }
     // stage ("converge.") {
